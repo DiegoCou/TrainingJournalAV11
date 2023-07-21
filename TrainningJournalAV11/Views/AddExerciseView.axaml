@@ -1,0 +1,77 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        x:Class="TrainningJournalAV11.Views.AddExerciseView"
+        xmlns:i="https://github.com/projektanker/icons.avalonia"
+        Title="AddExerciseView"
+        Name="AddExerciseWindow"
+        
+        xmlns:vm="using:TrainningJournalAV11.ViewModels"
+        x:DataType="vm:AddExerciseViewViewModel"
+        x:CompileBindings="false"
+        
+        WindowStartupLocation="CenterOwner"
+        Width="400"
+        Height="550"       
+        TransparencyLevelHint="AcrylicBlur"
+        Background="Transparent"
+        ExtendClientAreaToDecorationsHint="True"
+        >
+  <Panel>
+    <ExperimentalAcrylicBorder IsHitTestVisible="False">
+      <ExperimentalAcrylicBorder.Material>
+        <ExperimentalAcrylicMaterial
+          BackgroundSource="Digger"
+          TintColor="White"
+          TintOpacity="1"
+          MaterialOpacity="0.95"
+            />
+      </ExperimentalAcrylicBorder.Material>
+    </ExperimentalAcrylicBorder>
+    <StackPanel >
+      <DockPanel></DockPanel>
+      <TextBlock Margin="0 40 0 0" Text="New Exercise" HorizontalAlignment="Center" FontSize="20"></TextBlock>
+      <ComboBox IsTextSearchEnabled="true" ItemsSource="{Binding exerciseList}" SelectedIndex="{Binding ExerciseSelectedIndex, Mode=TwoWay}" Margin="20 20 0 10 " Width="360" >
+        <ComboBox.ItemTemplate  >
+          <DataTemplate >
+            <TextBlock Text="{Binding }" />
+          </DataTemplate>
+        </ComboBox.ItemTemplate>
+      </ComboBox>
+      <WrapPanel>
+        <TextBlock  Margin="20 0 -10 0" Width="35" VerticalAlignment="Center" ToolTip.Tip="Repetitions">Reps</TextBlock>
+        <NumericUpDown Margin="20 0" Increment="1" Value="{Binding Repetitions}" Minimum="0" Width="110" />
+        <TextBlock  Margin="29 0 -10 0" Width="35" VerticalAlignment="Center">Sets</TextBlock>
+        <NumericUpDown Margin="20 0" Increment="1" Value="{Binding Sets}" Minimum="0" Width="110" />
+      </WrapPanel>
+      <WrapPanel Margin="0 10">
+        <TextBlock  Margin="20 0 -10 0" Width="35" VerticalAlignment="Center" Text="RBS" >
+          <ToolTip.Tip>
+            <TextBlock>Rest Between Sets</TextBlock>
+          </ToolTip.Tip>
+        </TextBlock>
+        <NumericUpDown Margin="20 0" Minimum="0" Value="{Binding RestBetweenSets}" Increment="5" Width="110" />
+        <TextBlock  Margin="9 0 -10 0" Width="55" VerticalAlignment="Center" Text="EW(Kg)" >
+          <ToolTip.Tip>
+            <TextBlock>Extra Weight</TextBlock>
+          </ToolTip.Tip>
+        </TextBlock>
+        <NumericUpDown Margin="20 0" Value="{Binding ExtraWeight}" Increment="1" Width="110" />
+      </WrapPanel>
+      <TextBox Margin="20 10 20 0" Watermark="Description" TextWrapping="Wrap" Height="100"></TextBox>
+    </StackPanel>
+    <Button Margin="30" Grid.Row="3" Background="Transparent" Command="{Binding AddExerciseCommand}" VerticalAlignment="Bottom" HorizontalAlignment="Center" >
+      <StackPanel>
+        <i:Icon Margin="5" Value="fa-solid fa-plus" FontSize="30"  ></i:Icon>
+        <TextBlock>Add Exercise</TextBlock>
+      </StackPanel>
+    </Button>
+    <Button Margin="10"   Grid.Row="3" Background="{DynamicResource CancelRed}" Command="{Binding CloseWindowCommand}" CommandParameter="{Binding ElementName=AddExerciseWindow}" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+      <StackPanel>
+        <TextBlock>Cancel</TextBlock>
+      </StackPanel>
+    </Button>
+  </Panel>
+</Window>

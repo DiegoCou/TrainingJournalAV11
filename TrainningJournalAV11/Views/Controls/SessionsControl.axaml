@@ -1,0 +1,64 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="using:TrainningJournalAV11.Views.Controls"
+        xmlns:i="https://github.com/projektanker/icons.avalonia"
+        xmlns:vm="using:TrainningJournalAV11.Views.Controls"
+        xmlns:um="using:TrainningJournalAV11.ViewModels"
+        x:DataType="um:MainViewModel"
+
+        >
+  <Design.PreviewWith>
+    <Controls:SessionsControl />
+  </Design.PreviewWith>
+
+  <Style Selector="Controls|SessionsControl">
+    <Setter Property="Template">
+      <ControlTemplate>
+        <StackPanel>
+          <ItemsControl ItemsSource="{Binding Sessions}">
+            <ItemsControl.ItemTemplate>
+              <DataTemplate>
+                    <StackPanel>
+                      <Panel Background="{DynamicResource SessionOrange}">
+                        
+                        <Border Padding="10">
+                          <Panel >
+                            <TextBlock HorizontalAlignment="Center" FontWeight="Bold" Text="{Binding SessionName}" ToolTip.Tip="{Binding Description}">
+                            </TextBlock>
+                            <Menu  Height="20" Width="60" HorizontalAlignment="Left" >
+                              <MenuItem CornerRadius="5" Width="20" Height="20" Padding="0" Margin="0 0 0 0" >
+                                <MenuItem.Header >
+                                  <i:Icon HorizontalAlignment="Center" Value="fa-solid fa-bars"></i:Icon>
+                                </MenuItem.Header>
+                                <MenuItem  Header="Add Exercise" Command="{Binding $parent[4].((um:MainViewModel)DataContext).AddExerciseCommand}" CommandParameter="{Binding SessionName}" ></MenuItem>
+                                <MenuItem Header="Delete Session" Command="{Binding $parent[4].((um:MainViewModel)DataContext).DeleteSession}" CommandParameter="{Binding SessionName}" ></MenuItem>
+                              </MenuItem>
+                            </Menu>
+                          </Panel>
+                        </Border>
+                      </Panel>
+                      <Panel>
+                        <DataGrid ItemsSource="{Binding ExerciseList}"
+                                  IsReadOnly="True" 
+                                  GridLinesVisibility="None"
+                                  CanUserResizeColumns="True"
+                                   >
+                          <DataGrid.Columns >
+                            <DataGridTextColumn FontSize="12" Header="Exercise" Binding="{Binding Name}"></DataGridTextColumn>
+                            <DataGridTextColumn FontSize="12" Header="Reps" Binding="{Binding Repetitions}"></DataGridTextColumn>
+                            <DataGridTextColumn FontSize="12" Header="Sets" Binding="{Binding Sets}"  ></DataGridTextColumn>
+                            <DataGridTextColumn FontSize="12" Header="RBS" Binding="{Binding RestBetweenSets}"></DataGridTextColumn>
+                            <DataGridTextColumn FontSize="12" Header="ExtraWeight" Binding="{Binding ExtraWeight}"></DataGridTextColumn>
+                          </DataGrid.Columns>
+
+                        </DataGrid>
+                      </Panel>
+                    </StackPanel>
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+        </StackPanel>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+</Styles>

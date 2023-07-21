@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Journal>
+  <Day day="1/7/2023"></Day>
+  <Day day="11/7/2023">
+    <Session ID="3">
+      <Name>test</Name>
+      <Description>test</Description>
+      <ExerciseList>
+        <Exercise>
+          <Name>Pull-up</Name>
+        </Exercise>
+      </ExerciseList>
+    </Session>
+  </Day>
+  <Day day="12/7/2023">
+    <Session ID="3">
+      <Name>eafsdf</Name>
+      <Description>eefef</Description>
+    </Session>
+  </Day>
+  <Day day="14/7/2023">
+    <Session ID="3">
+      <Name>test</Name>
+      <Description>test</Description>
+    </Session>
+  </Day>
+</Journal>

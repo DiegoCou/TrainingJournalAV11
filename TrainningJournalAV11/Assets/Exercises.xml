@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Exercises>
+	<Exercise>
+        <Name>Push-up</Name>
+        <Description>Start in a plank position with your hands slightly wider than shoulder-width apart. Lower your body until your chest nearly touches the floor, keeping your core engaged and elbows tucked close to your sides. Push through your hands to extend your arms and return to the starting position.</Description>
+       <Equipment>No equipment required</Equipment>
+       <BodyPart>Chest, shoulders, triceps</BodyPart>
+    	</Exercise>
+   	 <Exercise>
+       <Name>Pull-up</Name>
+       <Description>Grab a pull-up bar with an overhand grip, hands shoulder-width apart. Hang freely, then pull your body upward until your chin passes the bar. Lower yourself back down with control. Use your back muscles to initiate and perform the movement.</Description>
+       <Equipment>Pull-up bar</Equipment>
+       <BodyPart>Back, biceps, shoulders</BodyPart>
+    	</Exercise>
+    	<Exercise>
+       <Name>Dumbbell Shoulder Press</Name>
+       <Description>Stand tall with a dumbbell in each hand, palms facing forward. Lift the dumbbells to shoulder height, then press them upward until your arms are fully extended. Lower the dumbbells back to the starting position with control.</Description>
+       <Equipment>Dumbbells</Equipment>
+       <BodyPart>Shoulders, triceps, upper chest</BodyPart>
+    	</Exercise>
+    	<Exercise>
+       <Name>Bench Press</Name>
+       <Description>Lie flat on a bench with a barbell positioned above your chest. Grasp the bar with a shoulder-width grip. Lower the bar down to your chest while keeping your elbows at a 90-degree angle. Push the bar back up until your arms are fully extended. Keep your feet on the floor and maintain a stable position throughout the exercise.</Description>
+       <Equipment>Barbell, bench</Equipment>
+       <BodyPart>Chest, shoulders, triceps</BodyPart>
+    	</Exercise>
+    	<Exercise>
+       <Name>Tricep Dips</Name>
+       <Description>Position your hands shoulder-width apart on parallel bars or a dip station. Lower your body by bending your elbows, keeping your elbows close to your sides until your upper arms are parallel to the ground. Push yourself back up to the starting position by extending your arms.</Description>
+       <Equipment>Parallel bars, dip station</Equipment>
+       <BodyPart>Triceps, shoulders, chest</BodyPart>
+    	</Exercise>
+    	<Exercise>
+       <Name>Barbell Bent-Over Row</Name>
+       <Description>Stand with your feet hip-width apart, knees slightly bent, and lean forward from your hips. Hold a barbell with an overhand grip, hands shoulder-width apart. Pull the bar up toward your upper abdomen, keeping your elbows close to your body and squeezing your shoulder blades together. Lower the bar back down with control.</Description>
+       <Equipment>Barbell</Equipment>
+       <BodyPart>Back (lats, rhomboids, traps)</BodyPart>
+    	</Exercise>
+    	<Exercise>
+       <Name>Arnold Press</Name>
+       <Description>Start with dumbbells in front of your shoulders, palms facing your body. Press the dumbbells upward, rotating your palms away from your body as you lift. Continue the motion until your arms are fully extended. Reverse the movement, rotating your palms back in as you lower the dumbbells to the starting position.</Description>
+       <Equipment>Dumbbells</Equipment>
+       <BodyPart>Shoulders, triceps, upper chest</BodyPart>
+    	</Exercise>
+    	<Exercise>
+       <Name>Dumbbell Bicep Curl</Name>
+       <Description>Stand with a dumbbell in each hand, arms fully extended and palms facing forward. Keeping your upper arms stationary, curl the dumbbells while contracting your biceps. Continue the motion until your biceps are fully contracted, then slowly lower the dumbbells back to the starting position.</Description>
+       <Equipment>Dumbbells</Equipment>
+       <BodyPart>Biceps</BodyPart>
+    	</Exercise>
+    	<Exercise>
+       <Name>Chest Fly</Name>
+       <Description>Lie on a flat bench holding dumbbells directly above your chest, palms facing each other. Lower the dumbbells out to the sides in a wide arc until you feel a stretch in your chest. Bring the dumbbells back up to the starting position by squeezing your chest muscles and maintaining a slight bend in your elbows.</Description>
+       <Equipment>Dumbbells or cables</Equipment>
+       <BodyPart>Chest</BodyPart>
+    	</Exercise>
+    	<Exercise>
+       <Name>Lat Pulldown</Name>
+       <Description>Sit at a lat pulldown machine with your knees secured under the pads. Grab the bar with a wide grip, palms facing away from you. Pull the bar down towards your chest, squeezing your shoulder blades together. Slowly return the bar to the starting position, maintaining control throughout the movement.</Description>
+       <Equipment>Lat pulldown machine</Equipment>
+       <BodyPart>Lats, biceps, upper back</BodyPart>
+    	</Exercise>
+</Exercises>

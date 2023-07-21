@@ -1,0 +1,57 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:TrainningJournalAV11.ViewModels"
+             xmlns:i="https://github.com/projektanker/icons.avalonia"
+             mc:Ignorable="d" 
+             x:Class="TrainningJournalAV11.Views.MainView"
+             xmlns:uc="using:TrainningJournalAV11.Views.Controls"
+             x:DataType="vm:MainViewModel"
+             >
+  <Design.DataContext>
+    <!-- This only sets the DataContext for the previewer in an IDE,
+         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+    <vm:MainViewModel />
+  </Design.DataContext>
+  <Panel >
+    <ExperimentalAcrylicBorder IsHitTestVisible="False">
+      <ExperimentalAcrylicBorder.Material>
+        <ExperimentalAcrylicMaterial
+          BackgroundSource="Digger"
+          TintColor="White"
+          TintOpacity="1"
+          MaterialOpacity="0.95"
+              />
+      </ExperimentalAcrylicBorder.Material>
+    </ExperimentalAcrylicBorder>
+    <Grid RowDefinitions="auto,*,auto,auto,auto" Margin="0 50 0 0">
+      <StackPanel>
+        <Panel Grid.Row="1" >
+          <Button Margin="20 0 20 0" Background="Transparent" Command="{Binding SelectPreviousDay}">
+            <i:Icon Value="fa-solid fa-angle-left" />
+          </Button>
+          <DatePicker Background="Transparent" BorderBrush="Transparent" SelectedDate="{Binding SelDate}" DayFormat="d (ddd)" MonthFormat="MMMM" HorizontalAlignment="Center"></DatePicker>
+          <Button Margin="20 0 20 0" HorizontalAlignment="Right" Background="Transparent" Command="{Binding SelectNextDay}">
+            <i:Icon Value="fa-solid fa-angle-right" />
+          </Button>
+        </Panel>
+        <Panel Height="500" Grid.Row="2" Margin="0 20 0 20">
+          <ScrollViewer>
+            <StackPanel>
+              <uc:SessionsControl />
+            </StackPanel>
+          </ScrollViewer>
+        </Panel>
+        <StackPanel VerticalAlignment="Bottom">
+        </StackPanel>
+      </StackPanel>
+      <Button  Margin="10"   Grid.Row="3" Background="Transparent" VerticalAlignment="Bottom" Command="{Binding AddSessionCommand}" HorizontalAlignment="Center" >
+        <StackPanel>
+          <i:Icon Value="fa-solid fa-plus" FontSize="25" Margin="10" />
+          <TextBlock  >Add Session</TextBlock>
+        </StackPanel>
+      </Button>
+    </Grid>
+  </Panel>
+</UserControl>

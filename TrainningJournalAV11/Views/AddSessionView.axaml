@@ -1,0 +1,53 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" 
+        x:Class="TrainningJournalAV11.Views.AddSessionView"
+        xmlns:i="https://github.com/projektanker/icons.avalonia"
+        Title="AddSessionView"
+        Name="AddSessionWindow"
+        
+        xmlns:vm="using:TrainningJournalAV11.ViewModels"
+        x:DataType="vm:AddSessionViewViewModel"        
+        x:CompileBindings="False"
+        
+        WindowStartupLocation="CenterOwner"
+        Width="400"
+        Height="550"
+        TransparencyLevelHint="AcrylicBlur"
+        Background="Transparent"
+        ExtendClientAreaToDecorationsHint="True"
+        >
+  <Panel>
+    <ExperimentalAcrylicBorder IsHitTestVisible="False">
+      <ExperimentalAcrylicBorder.Material>
+        <ExperimentalAcrylicMaterial
+          BackgroundSource="Digger"
+          TintColor="White"
+          TintOpacity="1"
+          MaterialOpacity="0.95"
+            />
+      </ExperimentalAcrylicBorder.Material>
+    </ExperimentalAcrylicBorder>
+    <StackPanel >
+      <DockPanel></DockPanel>
+      <TextBlock Margin="0 40 0 0" Text="New Session" HorizontalAlignment="Center" FontSize="20"></TextBlock>
+      <DatePicker Margin="0 20 0 0" Width="310" SelectedDate="{Binding SelDate}" HorizontalAlignment="Center" IsEnabled="False"></DatePicker>
+      <TextBox Margin="20" Watermark="Name" Text="{Binding SessionName, Mode=TwoWay}">
+      </TextBox>
+      <TextBox Margin="20 10 20 0" Watermark="Description" Text="{Binding Description, Mode=TwoWay}" TextWrapping="Wrap" Height="200"></TextBox>
+    </StackPanel>
+    <Button Margin="30" Grid.Row="3" Background="Transparent" VerticalAlignment="Bottom" HorizontalAlignment="Center" Command="{Binding AddSessionComand}" >
+      <StackPanel>
+        <i:Icon Margin="5" Value="fa-solid fa-plus" FontSize="30"  ></i:Icon>
+        <TextBlock  >Add Session</TextBlock>
+      </StackPanel>
+    </Button>
+    <Button Margin="10"   Grid.Row="3" Background="{DynamicResource CancelRed}" VerticalAlignment="Bottom"  Command="{Binding CloseWindowCommand}" CommandParameter="{Binding ElementName=AddSessionWindow}" HorizontalAlignment="Right">
+      <StackPanel>
+        <TextBlock  >Cancel</TextBlock>
+      </StackPanel>
+    </Button>
+  </Panel>
+</Window>

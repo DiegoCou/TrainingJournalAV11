@@ -1,0 +1,17 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="TrainningJournalAV11.App"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.Styles>
+        <FluentTheme />
+      <FluentTheme />
+      <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
+      <StyleInclude Source="/Views/Controls/SessionsControl.axaml"></StyleInclude>
+    </Application.Styles>
+  <Application.Resources>
+    <SolidColorBrush x:Key="SessionOrange">#EB753C</SolidColorBrush>
+    <SolidColorBrush x:Key="CancelRed">#e62e2e</SolidColorBrush>
+  </Application.Resources>
+</Application>
