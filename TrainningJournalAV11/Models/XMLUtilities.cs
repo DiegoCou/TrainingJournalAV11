@@ -51,6 +51,38 @@ namespace TrainningJournalAV11.Models
             }
         }
 
+        public static string DateToString(DateTimeOffset date)
+        {
+            return date.Day + "/" + date.Month + "/" + date.Year;
+        }
+        public static SessionItem? GetSession(string sessionName, DateTimeOffset date)
+        {
+            SessionItem session;
+
+            try
+            {
+
+                string day = DateToString(date);
+
+                var sessions = from item in journalDoc.Descendants("Session")
+                               where (string)item.Parent.Attribute("day") == day
+                               where (string)item.Element("Name") == sessionName
+                               select item;
+
+                var ses = sessions.FirstOrDefault();
+
+
+                session = new SessionItem(ses.Element("Name").Value, ses.Element("Description").Value, day);
+                
+                return session;
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         public static ObservableCollection<string> GetExercisesNames(string sessionName, string date)
         {
             ObservableCollection<string> exercises = new ObservableCollection<string>();
@@ -232,6 +264,32 @@ namespace TrainningJournalAV11.Models
 
             }
         }
+
+        public static bool EditSession(string name, string newName, string description, DateTimeOffset date)
+        {
+            string day = DateToString(date);
+
+            try
+            {
+                var sessions = from item in journalDoc.Descendants("Session")
+                          where (string)item.Parent.Attribute("day") == day
+                          where (string)item.Element("Name") == name
+                          select item;
+
+                var ses = sessions.FirstOrDefault();
+
+                ses.Element("Name").Value = newName;
+                ses.Element("Description").Value = description;
+
+                journalDoc.Save(journalFilePath);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         public static ObservableCollection<string> GetExercisesList()
         {
             ObservableCollection<string> exerciseList = new ObservableCollection<string>();

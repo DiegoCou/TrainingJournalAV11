@@ -20,8 +20,11 @@ public class MainViewModel : ReactiveObject
 
     public Interaction<AddSessionViewViewModel, SessionItem?> ShowDialog { get; }
     public Interaction<AddExerciseViewViewModel, ExerciseItem?> ShowDialogAddExercise { get; }
+
+    public Interaction<EditSessionViewViewModel, string?> ShowDialogEditSession { get; }
     public ICommand AddSessionCommand { get; }
     public ICommand AddExerciseCommand { get; }
+    public ICommand EditSessionCommand { get; }
 
     private DateTimeOffset _SelDate = new DateTimeOffset(DateTime.Today);
 
@@ -58,6 +61,7 @@ public class MainViewModel : ReactiveObject
         Sessions = XMLUtilities.GetSessionNames(_SelDate);
         ShowDialog = new Interaction<AddSessionViewViewModel, SessionItem?>();
         ShowDialogAddExercise = new Interaction<AddExerciseViewViewModel, ExerciseItem?>();
+        ShowDialogEditSession = new Interaction<EditSessionViewViewModel, string?>();
 
         AddSessionCommand = ReactiveCommand.CreateFromTask(async () =>
         {
@@ -69,9 +73,16 @@ public class MainViewModel : ReactiveObject
 
         AddExerciseCommand = ReactiveCommand.CreateFromTask<string>(AddExerciseCommandTask);
 
+        EditSessionCommand = ReactiveCommand.CreateFromTask<string>(EditSessionCommandTask);
     }
 
+    public async Task EditSessionCommandTask(string name)
+    {
+        var editSessionView = new EditSessionViewViewModel(name, _SelDate);
 
+        var result = await ShowDialogEditSession.Handle(editSessionView);
+        if (result != null) Sessions = XMLUtilities.GetSessionNames(_SelDate);
+    }
     public async Task AddExerciseCommandTask(string name)
     {
         var addExerciseView = new AddExerciseViewViewModel(name, _SelDate);

@@ -2,16 +2,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" 
-        x:Class="TrainningJournalAV11.Views.AddSessionView"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="TrainningJournalAV11.Views.EditSessionView"
+        Title="EditSessionView"
+        
+        Name="EditSessionWindow"
         xmlns:i="https://github.com/projektanker/icons.avalonia"
-        Title="AddSessionView"
-        Name="AddSessionWindow"
         xmlns:in="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
-        xmlns:iac="clr-namespace:Avalonia.Xaml.Interactions.Custom;assembly=Avalonia.Xaml.Interactions.Custom" 
+        xmlns:iac="clr-namespace:Avalonia.Xaml.Interactions.Custom;assembly=Avalonia.Xaml.Interactions.Custom"
         
         xmlns:vm="using:TrainningJournalAV11.ViewModels"
-        x:DataType="vm:AddSessionViewViewModel"        
+        x:DataType="vm:EditSessionViewViewModel"
         x:CompileBindings="False"
         
         WindowStartupLocation="CenterOwner"
@@ -20,6 +21,7 @@
         TransparencyLevelHint="AcrylicBlur"
         Background="Transparent"
         ExtendClientAreaToDecorationsHint="True"
+        
         >
   <Panel>
     <ExperimentalAcrylicBorder IsHitTestVisible="False">
@@ -34,24 +36,23 @@
     </ExperimentalAcrylicBorder>
     <StackPanel >
       <DockPanel></DockPanel>
-      <TextBlock Margin="0 40 0 0" Text="New Session" HorizontalAlignment="Center" FontSize="20"></TextBlock>
-      <DatePicker Margin="0 20 0 0" Width="310" SelectedDate="{Binding SelDate}" HorizontalAlignment="Center" IsEnabled="False"></DatePicker>
+      <TextBlock Margin="0 40 0 0" Text="Edit Session" HorizontalAlignment="Center" FontSize="20"></TextBlock>
       <TextBox Margin="20" Watermark="Name" Text="{Binding SessionName, Mode=TwoWay}">
         <in:Interaction.Behaviors>
-          <iac:FocusOnAttachedToVisualTreeBehavior />        
+          <iac:FocusOnAttachedToVisualTreeBehavior />
         </in:Interaction.Behaviors>
       </TextBox>
       <TextBox Margin="20 10 20 0" Watermark="Description" Text="{Binding Description, Mode=TwoWay}" TextWrapping="Wrap" Height="200"></TextBox>
     </StackPanel>
-    <Button Margin="30" IsDefault="True" Grid.Row="3" Background="Transparent" VerticalAlignment="Bottom" HorizontalAlignment="Center" Command="{Binding AddSessionComand}" >
+    <Button Margin="30" IsDefault="True" Grid.Row="3" Background="Transparent" VerticalAlignment="Bottom" HorizontalAlignment="Center" Command="{Binding EditSessionCommand}" >
       <StackPanel>
         <i:Icon Margin="5" Value="fa-solid fa-plus" FontSize="30"  ></i:Icon>
-        <TextBlock  >Add Session</TextBlock>
+        <TextBlock  >Edit Session</TextBlock>
       </StackPanel>
     </Button>
-    <Button Margin="10"   Grid.Row="3" Background="{DynamicResource CancelRed}" VerticalAlignment="Bottom"  Command="{Binding CloseWindowCommand}" CommandParameter="{Binding ElementName=AddSessionWindow}" HorizontalAlignment="Right">
+    <Button Margin="10"   Grid.Row="3" Background="{DynamicResource CancelRed}" VerticalAlignment="Bottom" HorizontalAlignment="Right">
       <StackPanel>
-        <TextBlock  >Cancel</TextBlock>
+        <TextBlock >Cancel</TextBlock>
       </StackPanel>
     </Button>
   </Panel>

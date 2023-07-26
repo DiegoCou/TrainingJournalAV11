@@ -16,6 +16,8 @@ public partial class MainWindow : ReactiveWindow<MainViewModel>
         AvaloniaXamlLoader.Load(this);
         this.WhenActivated(d => d(ViewModel!.ShowDialog.RegisterHandler(DoShowDialogAsync)));
         this.WhenActivated(d => d(ViewModel!.ShowDialogAddExercise.RegisterHandler(DoShowDialogAsync)));
+        this.WhenActivated(d => d(ViewModel!.ShowDialogEditSession.RegisterHandler(DoShowDialogAsync)));
+
     }
     private async Task DoShowDialogAsync(InteractionContext<AddSessionViewViewModel, SessionItem?> interaction)
     {
@@ -34,5 +36,14 @@ public partial class MainWindow : ReactiveWindow<MainViewModel>
         interaction.SetOutput(result);
     }
 
-    
+    private async Task DoShowDialogAsync(InteractionContext<EditSessionViewViewModel, string?> interaction)
+    {
+        var dialog = new EditSessionView();
+        dialog.DataContext = interaction.Input;
+
+        var result = await dialog.ShowDialog<string?>(this);
+        interaction.SetOutput(result);
+    }
+
+
 }

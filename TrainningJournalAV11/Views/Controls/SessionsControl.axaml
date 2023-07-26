@@ -31,6 +31,7 @@
                                   <i:Icon HorizontalAlignment="Center" Value="fa-solid fa-bars"></i:Icon>
                                 </MenuItem.Header>
                                 <MenuItem  Header="Add Exercise" Command="{Binding $parent[4].((um:MainViewModel)DataContext).AddExerciseCommand}" CommandParameter="{Binding SessionName}" ></MenuItem>
+                                <MenuItem Header="Edit Session" Command="{Binding $parent[4].((um:MainViewModel)DataContext).EditSessionCommand}" CommandParameter="{Binding SessionName}" ></MenuItem>
                                 <MenuItem Header="Delete Session" Command="{Binding $parent[4].((um:MainViewModel)DataContext).DeleteSession}" CommandParameter="{Binding SessionName}" ></MenuItem>
                               </MenuItem>
                             </Menu>
