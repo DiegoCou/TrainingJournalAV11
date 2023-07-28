@@ -11,6 +11,8 @@ using MsBox.Avalonia;
 using MsBox.Avalonia.Enums;
 using System.Threading.Tasks;
 using System.Reactive;
+using Avalonia.Controls;
+using TrainningJournalAV11.Views.Controls;
 
 namespace TrainningJournalAV11.ViewModels;
 
@@ -29,7 +31,19 @@ public class MainViewModel : ReactiveObject
     private DateTimeOffset _SelDate = new DateTimeOffset(DateTime.Today);
 
     private ObservableCollection<SessionItem> _Sessions = new ObservableCollection<SessionItem>() { };
+    private ExerciseItem _SelectedExercise = new ExerciseItem("", null, null, null, null, null, null, null);
 
+    public ExerciseItem SelectedExercise
+    {
+        get
+        {
+            return _SelectedExercise;
+        }
+        set
+        {
+            this.RaiseAndSetIfChanged(ref _SelectedExercise, value);
+        }
+    }
     public ObservableCollection<SessionItem> Sessions
     {
         get
@@ -114,11 +128,18 @@ public class MainViewModel : ReactiveObject
             XMLUtilities.DeleteSessionFromFile(name, _SelDate);
             Sessions = XMLUtilities.GetSessionNames(_SelDate);
         }
-        
+    }
+
+    public async Task DeleteExercise(string sessionName)
+    {
+         var box = MessageBoxManager
+                  .GetMessageBoxStandard("Warning", $"Are you sure you would like to delete \"{SelectedExercise.Name}\" from \"{sessionName}\"?",
+                      ButtonEnum.YesNo);
+        var result = await box.ShowAsync();
     }
 
 
-    /// <summary>
+    /// <summary>   
     /// Increases by one day the current selected date.
     /// </summary>
     public void SelectNextDay()

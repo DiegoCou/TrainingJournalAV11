@@ -43,15 +43,15 @@
       </TextBox>
       <TextBox Margin="20 10 20 0" Watermark="Description" Text="{Binding Description, Mode=TwoWay}" TextWrapping="Wrap" Height="200"></TextBox>
     </StackPanel>
-    <Button Margin="30" IsDefault="True" Grid.Row="3" Background="Transparent" VerticalAlignment="Bottom" HorizontalAlignment="Center" Command="{Binding AddSessionComand}" >
+    <Button Classes="TJButton" Margin="30" IsDefault="True" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Center" Command="{Binding AddSessionComand}" >
       <StackPanel>
         <i:Icon Margin="5" Value="fa-solid fa-plus" FontSize="30"  ></i:Icon>
         <TextBlock  >Add Session</TextBlock>
       </StackPanel>
     </Button>
-    <Button Margin="10"   Grid.Row="3" Background="{DynamicResource CancelRed}" VerticalAlignment="Bottom"  Command="{Binding CloseWindowCommand}" CommandParameter="{Binding ElementName=AddSessionWindow}" HorizontalAlignment="Right">
+    <Button Classes="TJCancelButton" Margin="10" Grid.Row="3" VerticalAlignment="Bottom"  Command="{Binding CloseWindowCommand}" CommandParameter="{Binding ElementName=AddSessionWindow}" HorizontalAlignment="Right">
       <StackPanel>
-        <TextBlock  >Cancel</TextBlock>
+        <TextBlock>Cancel</TextBlock>
       </StackPanel>
     </Button>
   </Panel>

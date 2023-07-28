@@ -1,0 +1,23 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+        </Border>
+    </Design.PreviewWith>
+
+    <!-- Add Styles Here -->
+  <Style Selector="Button.TJButton">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="FontSize" Value="14" />
+  </Style>
+  <Style Selector="Button.TJCancelButton">
+    <Setter Property="Background" Value="{DynamicResource CancelRed}"/>
+  </Style>
+  <Style Selector="DatePicker.TJDatePicker" >
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="DayFormat" Value="d (ddd)" />
+    <Setter Property="MonthFormat" Value="MMMM" />
+  </Style>
+</Styles>

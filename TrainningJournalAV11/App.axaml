@@ -5,10 +5,11 @@
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.Styles>
-        <FluentTheme />
-      <FluentTheme />
+        <FluentTheme>
+    </FluentTheme>
       <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
       <StyleInclude Source="/Views/Controls/SessionsControl.axaml"></StyleInclude>
+      <StyleInclude Source="/Styles/MainStyle.axaml"></StyleInclude>
     </Application.Styles>
   <Application.Resources>
     <SolidColorBrush x:Key="SessionOrange">#EB753C</SolidColorBrush>

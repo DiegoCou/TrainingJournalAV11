@@ -5,12 +5,11 @@
         xmlns:vm="using:TrainningJournalAV11.Views.Controls"
         xmlns:um="using:TrainningJournalAV11.ViewModels"
         x:DataType="um:MainViewModel"
-
+        xmlns:local="using:TrainningJournalAV11.Models"
         >
   <Design.PreviewWith>
     <Controls:SessionsControl />
   </Design.PreviewWith>
-
   <Style Selector="Controls|SessionsControl">
     <Setter Property="Template">
       <ControlTemplate>
@@ -20,17 +19,17 @@
               <DataTemplate>
                     <StackPanel>
                       <Panel Background="{DynamicResource SessionOrange}">
-                        
+
                         <Border Padding="10">
                           <Panel >
-                            <TextBlock HorizontalAlignment="Center" FontWeight="Bold" Text="{Binding SessionName}" ToolTip.Tip="{Binding Description}">
+                            <TextBlock Name="SessionName" HorizontalAlignment="Center" FontWeight="Bold" Text="{Binding SessionName}" ToolTip.Tip="{Binding Description}">
                             </TextBlock>
                             <Menu  Height="20" Width="60" HorizontalAlignment="Left" >
                               <MenuItem CornerRadius="5" Width="20" Height="20" Padding="0" Margin="0 0 0 0" >
                                 <MenuItem.Header >
                                   <i:Icon HorizontalAlignment="Center" Value="fa-solid fa-bars"></i:Icon>
                                 </MenuItem.Header>
-                                <MenuItem  Header="Add Exercise" Command="{Binding $parent[4].((um:MainViewModel)DataContext).AddExerciseCommand}" CommandParameter="{Binding SessionName}" ></MenuItem>
+                                <MenuItem Header="Add Exercise" Command="{Binding $parent[4].((um:MainViewModel)DataContext).AddExerciseCommand}" CommandParameter="{Binding SessionName}" ></MenuItem>
                                 <MenuItem Header="Edit Session" Command="{Binding $parent[4].((um:MainViewModel)DataContext).EditSessionCommand}" CommandParameter="{Binding SessionName}" ></MenuItem>
                                 <MenuItem Header="Delete Session" Command="{Binding $parent[4].((um:MainViewModel)DataContext).DeleteSession}" CommandParameter="{Binding SessionName}" ></MenuItem>
                               </MenuItem>
@@ -38,20 +37,38 @@
                           </Panel>
                         </Border>
                       </Panel>
-                      <Panel>
-                        <DataGrid ItemsSource="{Binding ExerciseList}"
+                      <Panel  >
+                        <DataGrid Name="ExerciseDataGrid"
+                                  ItemsSource="{Binding ExerciseList}"
                                   IsReadOnly="True" 
                                   GridLinesVisibility="None"
                                   CanUserResizeColumns="True"
+                                  HorizontalAlignment="Stretch"
+                                  SelectedItem="{Binding $parent[3].((um:MainViewModel)DataContext).SelectedExercise}"
                                    >
+                          <DataGrid.Styles>
+                            <Style Selector="DataGridRow:pointerover">
+                              <Setter Property="ContextFlyout" >
+                                <MenuFlyout>
+                                  <MenuItem Header="Delete Exercise" 
+                                            Command="{Binding $parent[2].((um:MainViewModel)DataContext).DeleteExercise}"
+                                            CommandParameter="{Binding Text, ElementName=SessionName}">
+                                    
+                                    <MenuItem.CommandParameter>
+                                    </MenuItem.CommandParameter>
+                                  </MenuItem>
+                                  
+                                </MenuFlyout> 
+                              </Setter>
+                            </Style>
+                          </DataGrid.Styles>
                           <DataGrid.Columns >
                             <DataGridTextColumn FontSize="12" Header="Exercise" Binding="{Binding Name}"></DataGridTextColumn>
                             <DataGridTextColumn FontSize="12" Header="Reps" Binding="{Binding Repetitions}"></DataGridTextColumn>
                             <DataGridTextColumn FontSize="12" Header="Sets" Binding="{Binding Sets}"  ></DataGridTextColumn>
                             <DataGridTextColumn FontSize="12" Header="RBS" Binding="{Binding RestBetweenSets}"></DataGridTextColumn>
-                            <DataGridTextColumn FontSize="12" Header="ExtraWeight" Binding="{Binding ExtraWeight}"></DataGridTextColumn>
+                            <DataGridTextColumn FontSize="12" Header="Weight" Binding="{Binding ExtraWeight}"></DataGridTextColumn>
                           </DataGrid.Columns>
-
                         </DataGrid>
                       </Panel>
                     </StackPanel>

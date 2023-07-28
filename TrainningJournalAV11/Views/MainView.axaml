@@ -28,11 +28,11 @@
     <Grid RowDefinitions="auto,*,auto,auto,auto" Margin="0 50 0 0">
       <StackPanel>
         <Panel Grid.Row="1" >
-          <Button Margin="20 0 20 0" Background="Transparent" Command="{Binding SelectPreviousDay}">
+          <Button Margin="20 0 20 0" Classes="TJButton" Command="{Binding SelectPreviousDay}">
             <i:Icon Value="fa-solid fa-angle-left" />
           </Button>
-          <DatePicker Background="Transparent" BorderBrush="Transparent" SelectedDate="{Binding SelDate}" DayFormat="d (ddd)" MonthFormat="MMMM" HorizontalAlignment="Center"></DatePicker>
-          <Button Margin="20 0 20 0" HorizontalAlignment="Right" Background="Transparent" Command="{Binding SelectNextDay}">
+          <DatePicker Classes="TJDatePicker" SelectedDate="{Binding SelDate}" HorizontalAlignment="Center"></DatePicker>
+          <Button Classes="TJButton" Margin="20 0 20 0" HorizontalAlignment="Right" Command="{Binding SelectNextDay}">
             <i:Icon Value="fa-solid fa-angle-right" />
           </Button>
         </Panel>
@@ -46,7 +46,7 @@
         <StackPanel VerticalAlignment="Bottom">
         </StackPanel>
       </StackPanel>
-      <Button  Margin="10"   Grid.Row="3" Background="Transparent" VerticalAlignment="Bottom" Command="{Binding AddSessionCommand}" HorizontalAlignment="Center" >
+      <Button Classes="TJButton" Margin="10"   Grid.Row="3" VerticalAlignment="Bottom" Command="{Binding AddSessionCommand}" HorizontalAlignment="Center" >
         <StackPanel>
           <i:Icon Value="fa-solid fa-plus" FontSize="25" Margin="10" />
           <TextBlock  >Add Session</TextBlock>
