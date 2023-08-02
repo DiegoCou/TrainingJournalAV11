@@ -44,6 +44,8 @@ public class MainViewModel : ReactiveObject
             this.RaiseAndSetIfChanged(ref _SelectedExercise, value);
         }
     }
+    public int SelectedIndex { get; set; }
+
     public ObservableCollection<SessionItem> Sessions
     {
         get
@@ -136,6 +138,13 @@ public class MainViewModel : ReactiveObject
                   .GetMessageBoxStandard("Warning", $"Are you sure you would like to delete \"{SelectedExercise.Name}\" from \"{sessionName}\"?",
                       ButtonEnum.YesNo);
         var result = await box.ShowAsync();
+
+        if(result  == ButtonResult.Yes && SelectedIndex!=null)
+        {
+            
+            XMLUtilities.DeleteExerciseIndexFromJournal(SelectedIndex, sessionName, SelDate);
+            Sessions = XMLUtilities.GetSessionNames(SelDate);
+        }
     }
 
 

@@ -5,7 +5,8 @@
         xmlns:vm="using:TrainningJournalAV11.Views.Controls"
         xmlns:um="using:TrainningJournalAV11.ViewModels"
         x:DataType="um:MainViewModel"
-        xmlns:local="using:TrainningJournalAV11.Models"
+        xmlns:local="using:TrainningJournalAV11.Models"        
+        
         >
   <Design.PreviewWith>
     <Controls:SessionsControl />
@@ -43,21 +44,24 @@
                                   IsReadOnly="True" 
                                   GridLinesVisibility="None"
                                   CanUserResizeColumns="True"
+                                  CanUserSortColumns="False"
                                   HorizontalAlignment="Stretch"
                                   SelectedItem="{Binding $parent[3].((um:MainViewModel)DataContext).SelectedExercise}"
+                                  SelectedIndex="{Binding $parent[3].((um:MainViewModel)DataContext).SelectedIndex}"
                                    >
                           <DataGrid.Styles>
+                            <Style Selector="DataGridCell">
+                              <Setter Property="ToolTip.Tip" Value="{Binding }" />
+                            </Style>
                             <Style Selector="DataGridRow:pointerover">
                               <Setter Property="ContextFlyout" >
                                 <MenuFlyout>
                                   <MenuItem Header="Delete Exercise" 
                                             Command="{Binding $parent[2].((um:MainViewModel)DataContext).DeleteExercise}"
                                             CommandParameter="{Binding Text, ElementName=SessionName}">
-                                    
                                     <MenuItem.CommandParameter>
                                     </MenuItem.CommandParameter>
                                   </MenuItem>
-                                  
                                 </MenuFlyout> 
                               </Setter>
                             </Style>

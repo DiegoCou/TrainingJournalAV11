@@ -265,6 +265,33 @@ namespace TrainningJournalAV11.Models
             }
         }
 
+        /// <summary>
+        /// Given an Index (from a datagrid with the exercises), a Session Name and the date of the session, removes said exercise from the journal.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="name"></param>
+        /// <param name="date"></param>
+        public static void DeleteExerciseIndexFromJournal(int? index, string name, DateTimeOffset date)
+        {
+            string day = date.Day + "/" + date.Month + "/" + date.Year;
+
+            try
+            {
+                var del = from item in journalDoc.Descendants("Exercise")
+                          where (string)item.Parent.Parent.Parent.Attribute("day") == day
+                          where (string)item.Parent.Parent.Element("Name") == name
+                          select item;
+
+                del.ElementAt((int)index).Remove();
+
+                journalDoc.Save(journalFilePath);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
         public static bool EditSession(string name, string newName, string description, DateTimeOffset date)
         {
             string day = DateToString(date);
