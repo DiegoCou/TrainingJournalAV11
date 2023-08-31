@@ -292,6 +292,15 @@ namespace TrainningJournalAV11.Models
             }
         }
 
+
+        /// <summary>
+        /// Edits sessiong name or description given a the original name, a new name, a new description and the date.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="newName"></param>
+        /// <param name="description"></param>
+        /// <param name="date"></param>
+        /// <returns></returns>
         public static bool EditSession(string name, string newName, string description, DateTimeOffset date)
         {
             string day = DateToString(date);
@@ -300,10 +309,17 @@ namespace TrainningJournalAV11.Models
             {
                 var sessions = from item in journalDoc.Descendants("Session")
                           where (string)item.Parent.Attribute("day") == day
-                          where (string)item.Element("Name") == name
                           select item;
 
-                var ses = sessions.FirstOrDefault();
+                var ses = (from item in sessions
+                          where (string)item.Element("Name") == name
+                          select item).FirstOrDefault();
+
+                foreach (var s in sessions)
+                {
+                    if (s.Element("Name").Value.ToLower() == newName.Trim().ToLower())
+                        throw new Exception();
+                }
 
                 ses.Element("Name").Value = newName;
                 ses.Element("Description").Value = description;

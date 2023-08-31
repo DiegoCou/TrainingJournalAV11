@@ -97,6 +97,15 @@ public class MainViewModel : ReactiveObject
         var editSessionView = new EditSessionViewViewModel(name, _SelDate);
 
         var result = await ShowDialogEditSession.Handle(editSessionView);
+        if (result == null)
+        {
+            var box = MessageBoxManager
+                      .GetMessageBoxStandard("Error", "Session name already exist",
+                          ButtonEnum.Ok);
+            var res = await box.ShowAsync();
+        }
+
+
         if (result != null) Sessions = XMLUtilities.GetSessionNames(_SelDate);
     }
     public async Task AddExerciseCommandTask(string name)

@@ -23,8 +23,9 @@
 
                         <Border Padding="10">
                           <Panel >
-                            <TextBlock Name="SessionName" HorizontalAlignment="Center" FontWeight="Bold" Text="{Binding SessionName}" ToolTip.Tip="{Binding Description}">
+                            <TextBlock Name="SessionName" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Text="{Binding SessionName}" ToolTip.Tip="{Binding Description}">
                             </TextBlock>
+                            <Button HorizontalAlignment="Right" Background="Transparent" Command="{Binding $parent[3].((um:MainViewModel)DataContext).AddExerciseCommand}" CommandParameter="{Binding SessionName}"><i:Icon HorizontalAlignment="Center" Value="fa-solid fa-plus" /> </Button>
                             <Menu  Height="20" Width="60" HorizontalAlignment="Left" >
                               <MenuItem CornerRadius="5" Width="20" Height="20" Padding="0" Margin="0 0 0 0" >
                                 <MenuItem.Header >

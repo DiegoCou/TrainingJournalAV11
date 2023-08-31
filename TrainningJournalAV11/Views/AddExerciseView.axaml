@@ -60,7 +60,6 @@
         </TextBlock>
         <NumericUpDown Margin="20 0" Value="{Binding ExtraWeight}" Increment="1" Width="110" />
       </WrapPanel>
-      <TextBox Margin="20 10 20 0" Watermark="Description" TextWrapping="Wrap" Height="100"></TextBox>
     </StackPanel>
     <Button Classes="TJButton" Margin="30" Grid.Row="3" Command="{Binding AddExerciseCommand}" VerticalAlignment="Bottom" HorizontalAlignment="Center" >
       <StackPanel>

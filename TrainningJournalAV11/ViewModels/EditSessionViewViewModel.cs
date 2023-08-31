@@ -29,13 +29,14 @@ namespace TrainningJournalAV11.ViewModels
 
 		}
 
-        private string EditSession(DateTimeOffset date)
+        private string? EditSession(DateTimeOffset date)
         {
             if (string.IsNullOrEmpty(SessionName) || SessionName == "")
                 return "";
 
             bool result = XMLUtilities.EditSession(oldName, SessionName, Description, date);
-
+            if (result == false)
+                return null;
             return "";
         }
     }
