@@ -1,9 +1,13 @@
 ﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Reflection.PortableExecutable;
+using System.Runtime.InteropServices.JavaScript;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +29,6 @@ namespace TrainningJournalAV11.Models
         public static string exFileName = "Assets\\Exercises.xml";
         public static string exercisesFilePath = Path.Combine(currentDirectory, exFileName);
         public static XDocument exercisesDoc = XDocument.Load(exercisesFilePath);
-
         public static ObservableCollection<SessionItem> GetSessionNames(DateTimeOffset date)
         {
             ObservableCollection<SessionItem> sessionList = new ObservableCollection<SessionItem>();
@@ -217,6 +220,7 @@ namespace TrainningJournalAV11.Models
 
                 XElement exerciseList = it.FirstOrDefault();
 
+
                 exerciseList.Add
                 (
                     new XElement
@@ -351,6 +355,26 @@ namespace TrainningJournalAV11.Models
                 exerciseList = new ObservableCollection<string>(exerciseList.Order());
 
             }catch (Exception ex)
+            {
+
+            }
+
+            return exerciseList;
+        }
+        public static ObservableCollection<ExerciseJsonItem> GetExercisesListFromJson()
+        {
+            ObservableCollection<ExerciseJsonItem> exerciseList = new ObservableCollection<ExerciseJsonItem>();
+            
+
+            try {
+
+                string json = System.IO.File.ReadAllText("Assets\\exercises.json");
+                var exercises = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ExerciseJsonItem>>(json);
+
+                exerciseList = new ObservableCollection<ExerciseJsonItem>(exercises);
+
+            }
+            catch (Exception ex)
             {
 
             }

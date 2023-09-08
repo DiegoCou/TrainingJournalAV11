@@ -10,32 +10,45 @@ namespace TrainningJournalAV11.ViewModels
     public class AddExerciseViewViewModel : ReactiveObject
     {
 
-        public ObservableCollection<string> exerciseList { get; set; }
-
-        private ExerciseItem exercise { get; set; }
-
+        public ObservableCollection<ExerciseJsonItem> exerciseList { get; set; }
+        private ExerciseJsonItem _Exercise;
         private string? _ExerciseName;
         private int _ExerciseSelectedIndex;
         private int _Repetitions;
         private int _Sets;
         private int _RestBetweenSets;
         private int _ExtraWeight;
-        public int ExerciseSelectedIndex { get => _ExerciseSelectedIndex; set { this.RaiseAndSetIfChanged(ref _ExerciseSelectedIndex, value); ExerciseName = exerciseList[_ExerciseSelectedIndex]; } }
+        private string _Instructions;
+
+        public string Instructions { get => _Instructions; set=> this.RaiseAndSetIfChanged(ref _Instructions, value); }
+        public int ExerciseSelectedIndex 
+        { 
+            get => _ExerciseSelectedIndex; 
+            
+            set { 
+                this.RaiseAndSetIfChanged(ref _ExerciseSelectedIndex, value); 
+                ExerciseName = exerciseList[_ExerciseSelectedIndex].name; 
+                Exercise = exerciseList[ExerciseSelectedIndex];
+                Instructions = string.Join("\n\n", _Exercise.instructions);
+            } 
+        }
         public int Repetitions { get => _Repetitions; set => this.RaiseAndSetIfChanged(ref _Repetitions, value); }
         public string? ExerciseName { get => _ExerciseName; set => this.RaiseAndSetIfChanged(ref _ExerciseName, value); }
         public int Sets { get => _Sets; set => this.RaiseAndSetIfChanged(ref _Sets, value); }
         public int RestBetweenSets { get => _RestBetweenSets; set => this.RaiseAndSetIfChanged(ref _RestBetweenSets, value); }
         public int ExtraWeight { get => _ExtraWeight; set => this.RaiseAndSetIfChanged(ref _ExtraWeight, value); }
-
+        private ExerciseJsonItem Exercise { get => _Exercise; set { this.RaiseAndSetIfChanged(ref _Exercise, value); } }
         public ReactiveCommand<Window, Unit> CloseWindowCommand { get; }
         public ReactiveCommand<Unit, ExerciseItem> AddExerciseCommand { get; }
         
 
         public AddExerciseViewViewModel(string SessionName, DateTimeOffset date)
         {
-            exerciseList = XMLUtilities.GetExercisesList();
+            exerciseList = XMLUtilities.GetExercisesListFromJson();
             _ExerciseSelectedIndex = 0;
-            _ExerciseName = exerciseList[_ExerciseSelectedIndex];
+            _ExerciseName = exerciseList[_ExerciseSelectedIndex].name;
+            _Exercise = exerciseList[_ExerciseSelectedIndex];
+            _Instructions = string.Join("\n\n", _Exercise.instructions);
             _ExtraWeight = 0;
             _RestBetweenSets = 0;
             _Repetitions = 0;
@@ -43,7 +56,7 @@ namespace TrainningJournalAV11.ViewModels
 
             AddExerciseCommand = ReactiveCommand.Create(() =>
                 {
-                    ExerciseItem exercise = new ExerciseItem(_ExerciseName, null, null, null, _Repetitions,_Sets,_RestBetweenSets,_ExtraWeight);
+                    ExerciseItem exercise = new ExerciseItem(_Exercise.name, null, null, null, _Repetitions,_Sets,_RestBetweenSets,_ExtraWeight);
 
                     if(XMLUtilities.AddExercise(SessionName, exercise, date))
                         return exercise;

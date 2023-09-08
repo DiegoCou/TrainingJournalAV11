@@ -24,4 +24,10 @@
       <Description>test</Description>
     </Session>
   </Day>
+  <Day day="8/9/2023">
+    <Session ID="3">
+      <Name>test</Name>
+      <Description>test</Description>
+    </Session>
+  </Day>
 </Journal>

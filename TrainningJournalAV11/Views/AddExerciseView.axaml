@@ -33,10 +33,10 @@
     <StackPanel >
       <DockPanel></DockPanel>
       <TextBlock Margin="0 40 0 0" Text="New Exercise" HorizontalAlignment="Center" FontSize="20"></TextBlock>
-      <ComboBox IsTextSearchEnabled="true" ItemsSource="{Binding exerciseList}" SelectedIndex="{Binding ExerciseSelectedIndex, Mode=TwoWay}" Margin="20 20 0 10 " Width="360" >
+      <ComboBox IsTextSearchEnabled="true"  ItemsSource="{Binding exerciseList}" SelectedIndex="{Binding ExerciseSelectedIndex, Mode=TwoWay}" Margin="20 20 0 10 " Width="360" >
         <ComboBox.ItemTemplate  >
           <DataTemplate >
-            <TextBlock Text="{Binding }" />
+            <TextBlock MaxWidth="335" Text="{Binding name}" />
           </DataTemplate>
         </ComboBox.ItemTemplate>
       </ComboBox>
@@ -59,6 +59,7 @@
           </ToolTip.Tip>
         </TextBlock>
         <NumericUpDown Margin="20 0" Value="{Binding ExtraWeight}" Increment="1" Width="110" />
+        <TextBox Margin="20" Width="360" Height="200" TextWrapping="WrapWithOverflow" Text="{Binding Instructions}"></TextBox>
       </WrapPanel>
     </StackPanel>
     <Button Classes="TJButton" Margin="30" Grid.Row="3" Command="{Binding AddExerciseCommand}" VerticalAlignment="Bottom" HorizontalAlignment="Center" >

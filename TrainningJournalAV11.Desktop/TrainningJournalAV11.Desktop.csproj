@@ -17,6 +17,7 @@
     <PackageReference Include="Avalonia.Xaml.Interactions.Custom" Version="11.0.0" />
     <PackageReference Include="Avalonia.Xaml.Interactivity" Version="11.0.0" />
     <PackageReference Include="MessageBox.Avalonia" Version="3.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Projektanker.Icons.Avalonia" Version="8.0.0" />
     <PackageReference Include="Projektanker.Icons.Avalonia.FontAwesome" Version="8.0.0" />
   </ItemGroup>
