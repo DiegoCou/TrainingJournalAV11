@@ -1,0 +1,74 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="TrainningJournalAV11.Views.SelectExerciseView"
+        Title="SelectExerciseView"
+        
+        xmlns:vm="using:TrainningJournalAV11.ViewModels"
+        x:DataType="vm:SelectExerciseViewViewModel"
+        x:CompileBindings="false"
+        
+        WindowStartupLocation="CenterOwner"
+        Width="400"
+        Height="550"
+        TransparencyLevelHint="AcrylicBlur"
+        Background="Transparent"
+        ExtendClientAreaToDecorationsHint="True"
+        >
+
+  <Panel>
+    <ExperimentalAcrylicBorder IsHitTestVisible="False">
+      <ExperimentalAcrylicBorder.Material>
+        <ExperimentalAcrylicMaterial
+          BackgroundSource="Digger"
+          TintColor="White"
+          TintOpacity="1"
+          MaterialOpacity="0.95"
+            />
+      </ExperimentalAcrylicBorder.Material>
+    </ExperimentalAcrylicBorder>
+    <SplitView IsPaneOpen="{Binding IsPaneOpen}"
+           DisplayMode="Inline"
+           OpenPaneLength="400"
+           Margin="00 20 0 0"
+           PaneBackground="Transparent">
+      <SplitView.Pane>
+        <Panel>
+          <TextBlock Margin="0 30 0 0" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Muscle Groups"></TextBlock>
+          <ScrollViewer Margin="10 60">
+            <ItemsControl VerticalAlignment="Center" ItemsSource="{Binding MuscleList}" >
+              <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                  <Button Name="Test" Background="Transparent" Margin="10" Content="{Binding }"
+                          CommandParameter="{Binding}"
+                          Command="{Binding $parent[ItemsControl].DataContext.PaneOpenCloseCommand}"
+                          
+                          />
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+          </ScrollViewer>
+        </Panel>
+      </SplitView.Pane>
+      <SplitView.Content >
+        <Panel Margin="30" IsVisible="{Binding BackButtonVisible}">
+          <Button IsVisible="{Binding BackButtonVisible}" Margin="0 0 00 0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Content="Back" 
+                  Command="{Binding PaneOpenCloseCommand}"></Button>
+          <TextBox VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="200" Margin="5 30 0 10 " Text="{Binding ChangingText}"></TextBox>
+          <ScrollViewer Margin="0 60 0 0">
+            <ItemsControl  VerticalAlignment="Top" ItemsSource="{Binding SearchList}" >
+              <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                  <TextBlock Background="Transparent" Margin="10" Text="{Binding name}"/>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+          </ScrollViewer>
+        </Panel>
+
+      </SplitView.Content>
+    </SplitView>
+  </Panel>
+</Window>

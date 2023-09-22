@@ -27,9 +27,9 @@ public partial class MainWindow : ReactiveWindow<MainViewModel>
         var result = await dialog.ShowDialog<SessionItem?>(this);
         interaction.SetOutput(result);
     }
-    private async Task DoShowDialogAsync(InteractionContext<AddExerciseViewViewModel, ExerciseItem?> interaction)
+    private async Task DoShowDialogAsync(InteractionContext<SelectExerciseViewViewModel, ExerciseItem?> interaction)
     {
-        var dialog = new AddExerciseView();
+        var dialog = new SelectExerciseView();
         dialog.DataContext = interaction.Input;
 
         var result = await dialog.ShowDialog<ExerciseItem?>(this);

@@ -21,7 +21,7 @@ public class MainViewModel : ReactiveObject
     
 
     public Interaction<AddSessionViewViewModel, SessionItem?> ShowDialog { get; }
-    public Interaction<AddExerciseViewViewModel, ExerciseItem?> ShowDialogAddExercise { get; }
+    public Interaction<SelectExerciseViewViewModel, ExerciseItem?> ShowDialogAddExercise { get; }
 
     public Interaction<EditSessionViewViewModel, string?> ShowDialogEditSession { get; }
     public ICommand AddSessionCommand { get; }
@@ -76,7 +76,7 @@ public class MainViewModel : ReactiveObject
     {
         Sessions = XMLUtilities.GetSessionNames(_SelDate);
         ShowDialog = new Interaction<AddSessionViewViewModel, SessionItem?>();
-        ShowDialogAddExercise = new Interaction<AddExerciseViewViewModel, ExerciseItem?>();
+        ShowDialogAddExercise = new Interaction<SelectExerciseViewViewModel, ExerciseItem?>();
         ShowDialogEditSession = new Interaction<EditSessionViewViewModel, string?>();
 
         AddSessionCommand = ReactiveCommand.CreateFromTask(async () =>
@@ -108,13 +108,21 @@ public class MainViewModel : ReactiveObject
 
         if (result != null) Sessions = XMLUtilities.GetSessionNames(_SelDate);
     }
+
     public async Task AddExerciseCommandTask(string name)
+    {
+        var addExerciseView = new SelectExerciseViewViewModel();
+
+        var result = await ShowDialogAddExercise.Handle(addExerciseView);
+        if (result != null) Sessions = XMLUtilities.GetSessionNames(_SelDate);
+    }
+    /*public async Task AddExerciseCommandTask(string name)
     {
         var addExerciseView = new AddExerciseViewViewModel(name, _SelDate);
 
         var result = await ShowDialogAddExercise.Handle(addExerciseView);
         if (result != null) Sessions = XMLUtilities.GetSessionNames(_SelDate);
-    }
+    }*/
 
     /// <summary>
     /// Given a SessioName as binding, and using the current date selected deletes a session with that name in that date.

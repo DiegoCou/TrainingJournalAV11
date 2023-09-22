@@ -33,5 +33,8 @@ namespace TrainningJournalAV11.Models
 
         }
 
+        public ExerciseItem()
+        {
+        }
     }
 }
